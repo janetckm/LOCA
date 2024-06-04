@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" type="image/png" href="favicon.ico">
+
+    <title>LOCA! for TOURSIM!</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvhWKvZj7MEbUaHvW_xwiZCvL70gi-wyM"></script>
+    
+    <style>
+      #logo{
+        position: absolute;
+        top: 75px;
+        left: 50px;
+        width: 120px;
+        z-index: 2;
+        opacity: 0.7;
+      }
+      footer{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        background-color: black;
+        color: white;
+        text-align: center;
+        z-index: 100;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.6em;
+      }
+      #map-container {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        background-color: black;
+      }
+      #map {
+        height: calc(100% - 100px); /* Account for the black bars */
+        width: 100%;
+      }
+      .black-bar {
+        position: absolute;
+        width: 100%;
+        height: 100px;
+        background-color: black;
+        z-index: 1;
+      }
+      .top-bar {
+        top: 0;
+      }
+      .bottom-bar {
+        bottom: 0;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      h1{
+        color: grey;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.5em;
+      }
+    </style>
+  </head>
+  <body>
+   
+    <div id="map-container">
+      <div id="map"></div>
+      
+      <div class="black-bar top-bar"></div>
+      <img id="logo" src="asset/LOCA_white.png" alt="LOCA!">
+      <div class="black-bar bottom-bar"></div>
+      
+    </div>
+    <script>
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 22.3193, lng: 114.1694 }, // Center the map around Hong Kong
+          zoom: 11,
+          styles: [
+            {
+              "elementType": "geometry",
+              "stylers": [{ "color": "#212121" }]
+            },
+            {
+              "elementType": "labels.icon",
+              "stylers": [{ "visibility": "off" }]
+            },
+            {
+              "elementType": "labels.text.fill",
+              "stylers": [{ "color": "#757575" }]
+            },
+            {
+              "elementType": "labels.text.stroke",
+              "stylers": [{ "color": "#212121" }]
+            },
+            {
+              "featureType": "administrative",
+              "elementType": "geometry",
+              "stylers": [{ "color": "#757575" }]
+            },
+            {
+              "featureType": "administrative.country",
+              "elementType": "labels.text.fill",
+              "stylers": [{ "color": "#9e9e9e" }]
+            },
+            {
+              "featureType": "administrative.land_parcel",
+              "stylers": [{ "visibility": "off" }]
+            },
+            {
+              "featureType": "administrative.locality",
+              "elementType": "labels.text.fill",
+              "stylers": [{ "color": "#bdbdbd" }]
+            },
+            {
+              "featureType": "poi",
+              "elementType": "labels.text.fill",
+              "stylers": [{ "color": "#757575" }]
+            },
+            {
+              "featureType": "poi.park",
+              "elementType": "geometry",
+              "stylers": [{ "color": "#181818" }]
+            },
+            {
+              "featureType": "poi.park",
+              "elementType": "labels.text.fill",
+              "stylers": [{ "color": "#616161" }]
+            },
+            {
+              "featureType": "poi.park",
+              "elementType": "labels.text.stroke",
+              "stylers": [{ "color": "#1b1b1b" }]
+            },
+            {
+              "featureType": "road",
+              "elementType": "geometry.fill",
+              "stylers": [{ "color": "#2c2c2c" }]
+            },
+            {
+              "featureType": "road",
+              "elementType": "labels.text.fill",
+              "stylers": [{ "color": "#8a8a8a" }]
+            },
+            {
+              "featureType": "road.arterial",
+              "elementType": "geometry",
+              "stylers": [{ "color": "#373737" }]
+            },
+            {
+              "featureType": "road.highway",
+              "elementType": "geometry",
+              "stylers": [{ "color": "#3c3c3c" }]
+            },
+            {
+              "featureType": "road.highway.controlled_access",
+              "elementType": "geometry",
+              "stylers": [{ "color": "#4e4e4e" }]
+            },
+            {
+              "featureType": "road.local",
+              "elementType": "labels.text.fill",
+              "stylers": [{ "color": "#616161" }]
+            },
+            {
+              "featureType": "transit",
+              "elementType": "labels.text.fill",
+              "stylers": [{ "color": "#757575" }]
+            },
+            {
+              "featureType": "water",
+              "elementType": "geometry",
+              "stylers": [{ "color": "#000000" }]
+            },
+            {
+              "featureType": "water",
+              "elementType": "labels.text.fill",
+              "stylers": [{ "color": "#3d3d3d" }]
+            }
+          ]
+        });
+
+        const locations = [
+          { film_name: "Infernal Affairs 無間道", URL:"https://www.imdb.com/title/tt0338564/", year:"2002", address: "10 Chatham Rd S, Tsim Sha Tsui, Hong Kong", lat: 22.2976, lng: 114.1729, picture: "/asset/movie/infernal-affairs.png" },
+          { film_name: "Chungking Express 重慶森林", URL:"https://www.imdb.com/title/tt0109424/", year:"1994", address: "Chungking Mansions, 36-44 Nathan Rd, Tsim Sha Tsui, Hong Kong", lat: 22.2977, lng: 114.1729, picture: "/asset/movie/infernal-affairs.png" },
+          { film_name: "The Killer 喋血雙雄", URL:"https://www.imdb.com/title/tt0097202/", year:"1989", address: "Yau Ma Tei Fruit Market, Reclamation St, Yau Ma Tei, Hong Kong", lat: 22.3090, lng: 114.1684, picture: "/asset/movie/infernal-affairs.png" },
+          { film_name: "In the Mood for Love 花樣年華", URL:"https://www.imdb.com/title/tt0118694/", year:"2000", address: "Morse Park, 1 Morse Park Rd, Wong Tai Sin, Hong Kong", lat: 22.3461, lng: 114.2026, picture: "/asset/movie/infernal-affairs.png" },
+          { film_name: "Police Story 警察故事", URL:"https://www.imdb.com/title/tt0089374/", year:"1985", address: "Tai Po Police Station, 44 Ting Kok Rd, Tai Po, Hong Kong", lat: 22.4509, lng: 114.1595, picture: "/asset/movie/infernal-affairs.png" },
+          { film_name: "A Better Tomorrow 英雄本色", URL:"https://www.imdb.com/title/tt0092263/", year:"1986", address: "Tsim Sha Tsui Promenade, Salisbury Rd, Tsim Sha Tsui, Hong Kong", lat: 22.2951, lng: 114.1691, picture: "/asset/movie/infernal-affairs.png" },
+          { film_name: "Internal Affairs 無間道", URL:"https://www.imdb.com/title/tt0338564/", year:"2002", address: "Central Police Station, 10 Hollywood Rd, Central, Hong Kong", lat: 22.2830, lng: 114.1476, picture: "/asset/movie/infernal-affairs.png" },
+          { film_name: "Kung Fu Hustle 功夫", URL:"https://www.imdb.com/title/tt0119217/", year:"2004", address: "Lam Tei Quarry, Lam Tei, Hong Kong", lat: 22.3707, lng: 114.0165, picture: "/asset/movie/infernal-affairs.png" },
+          { film_name: "Shaolin Soccer 少林足球", URL:"https://www.imdb.com/title/tt0286112/", year:"2001", address: "Tseung Kwan O Industrial Estate, Tseung Kwan O, Hong Kong", lat: 22.3139, lng: 114.2647, picture: "/asset/movie/infernal-affairs.png" },
+          { film_name: "Fallen Angel 墮落天使", URL:"https://www.imdb.com/title/tt0112913/", year:"1995", address: "Sai Wan Ho MTR Station, Hong Kong", lat: 22.28238129728914, lng: 114.2223959967271, picture: "/asset/movie/fallen-angel.jpg" },
+          { film_name: "Full Throttle 烈火戰車", URL:"https://www.imdb.com/title/tt0113651/", year:"1995", address: "Aberdeen Tunnel, Hong Kong Island, Hong Kong", lat: 22.2489, lng: 114.1587, picture: "/asset/movie/infernal-affairs.png" }
+        ];
+
+        locations.forEach(location => {
+            const originalSize = new google.maps.Size(30, 20); // Original icon size
+            const enlargedSize = new google.maps.Size(70, 50); // Enlarged icon size
+           
+            const marker = new google.maps.Marker({
+            position: { lat: location.lat, lng: location.lng },
+            map: map,
+            title: location.film_name,
+            opacity: 0.7,
+            icon: {
+                url: location.picture, // URL of the image
+                scaledSize: originalSize,
+                origin: new google.maps.Point(0, 0), // Origin point of the icon
+                anchor: new google.maps.Point(20, 20) // Anchor point of the icon
+                }
+          });
+
+            marker.addListener('mouseover', function () {
+                marker.setIcon({
+                    url: location.picture,
+                    scaledSize: enlargedSize,
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(30, 30) // Adjust anchor point to keep the icon centered
+                });
+                marker.setOpacity(1.0);
+            });
+
+            // Add mouseout event listener to reset the icon size and opacity
+            marker.addListener('mouseout', function () {
+                marker.setIcon({
+                    url: location.picture,
+                    scaledSize: originalSize,
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(20, 20)
+                });
+                marker.setOpacity(0.5);
+            });
+
+          const infowindow = new google.maps.InfoWindow({
+                content: `<div style='color: black;'>
+                        <h1>${location.film_name} (${location.year})</h1>
+                        <a href="${location.URL}" target="_blank">More Info on IMDb</a>
+                        <p>${location.address}</p>
+                        <img src='${location.picture}' alt='${location.film_name}' style='width:250px;'>
+                      </div>`
+            });
+
+            marker.addListener("click", () => {
+                infowindow.open(map, marker);
+            });
+        });
+      }
+
+      window.onload = initMap;
+    </script>
+    <footer>&copy; Copyright 2024 Ka Man Janet CHOI</footer>
+  </body>
+</html>
