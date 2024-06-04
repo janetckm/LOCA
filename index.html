@@ -38,6 +38,10 @@
         color: white;
       }
 
+      #imdb{
+        color: grey;
+      }
+
       #map-container {
         position: relative;
         height: 100vh;
@@ -207,12 +211,14 @@
           { film_name: "Kung Fu Hustle 功夫", URL:"https://www.imdb.com/title/tt0119217/", year:"2004", address: "Lam Tei Quarry, Lam Tei, Hong Kong", lat: 22.3707, lng: 114.0165, picture: "asset/movie/infernal-affairs.png" },
           { film_name: "Shaolin Soccer 少林足球", URL:"https://www.imdb.com/title/tt0286112/", year:"2001", address: "Tseung Kwan O Industrial Estate, Tseung Kwan O, Hong Kong", lat: 22.3139, lng: 114.2647, picture: "asset/movie/infernal-affairs.png" },
           { film_name: "Fallen Angel 墮落天使", URL:"https://www.imdb.com/title/tt0112913/", year:"1995", address: "Sai Wan Ho MTR Station, Hong Kong", lat: 22.28238129728914, lng: 114.2223959967271, picture: "asset/movie/fallen-angel.jpg" },
-          { film_name: "Full Throttle 烈火戰車", URL:"https://www.imdb.com/title/tt0113651/", year:"1995", address: "Aberdeen Tunnel, Hong Kong Island, Hong Kong", lat: 22.2489, lng: 114.1587, picture: "asset/movie/infernal-affairs.png" }
+          { film_name: "Full Throttle 烈火戰車", URL:"https://www.imdb.com/title/tt0113651/", year:"1995", address: "Aberdeen Tunnel, Hong Kong Island, Hong Kong", lat: 22.2489, lng: 114.1587, picture: "asset/movie/infernal-affairs.png" },
+          { film_name: "Lan Kwai Fong 喜愛夜蒲 1/2", URL:"https://www.imdb.com/title/tt1988689/", year:"2011", address: "Lan Kwai Fong, Hong Kong Island, Hong Kong", lat: 22.28194334083403, lng: 114.15577800738939, picture: "asset/movie/lankwaifong.png" },
+          { film_name: "Life After Death 那些我愛過的人", URL:"https://www.discoverhongkong.com/tc/explore/great-outdoor/wellness/high-island-geo-trail.html", year:"2019", address: "High Island Reservoir East Dam 萬宜水庫東壩, Sai Kung, Hong Kong", lat: 22.37040099949507, lng: 114.37340747772033, picture: "asset/drama/life-after-death_res2.png" }
         ];
 
         locations.forEach(location => {
-            const originalSize = new google.maps.Size(30, 20); // Original icon size
-            const enlargedSize = new google.maps.Size(70, 50); // Enlarged icon size
+            const originalSize = new google.maps.Size(40, 23); // Original icon size
+            const enlargedSize = new google.maps.Size(80, 45); // Enlarged icon size
            
             const marker = new google.maps.Marker({
             position: { lat: location.lat, lng: location.lng },
@@ -249,10 +255,12 @@
             });
 
           const infowindow = new google.maps.InfoWindow({
-                content: `<div style='color: black;'>
+                content: `<div style='color: black; text-align: center;'>
                         <h1>${location.film_name} (${location.year})</h1>
-                        <a href="${location.URL}" target="_blank">More Info on IMDb</a>
+                        <a id ="imdb" href="${location.URL}" target="_blank">More Info on IMDb</a>
                         <p>${location.address}</p>
+                        <p>Latitude: ${location.lat}, Longitude: ${location.lng}</p>
+                        <p><a href="https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}" target="_blank">Get Directions</a></p>
                         <img src='${location.picture}' alt='${location.film_name}' style='width:250px;'>
                       </div>`
             });
@@ -265,6 +273,6 @@
 
       window.onload = initMap;
     </script>
-    <footer>&copy; Copyright 2024 <a href="https://janetckm.github.io/">Ka Man Janet CHOI</a></footer>
+    <footer>&copy; Copyright 2024 <a href="https://janetckm.github.io/">Ka Man Janet CHOI</a>MAP for in-depth</footer>
   </body>
 </html>
