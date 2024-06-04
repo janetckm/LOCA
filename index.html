@@ -2,11 +2,30 @@
 <html>
   <head>
     <link rel="icon" type="image/png" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
 
     <title>LOCA! for TOURSIM!</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvhWKvZj7MEbUaHvW_xwiZCvL70gi-wyM"></script>
     
     <style>
+      
+      #sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 1;
+        overflow-y: auto;
+        margin-top: 80px;
+        opacity: 0; /* Start with sidebar hidden */
+        transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity */
+        display: none; /* Initially not displayed */
+      }
+
       #logo{
         position: absolute;
         top: 75px;
@@ -18,6 +37,7 @@
       #logo:hover{
         opacity: 1;
       }
+
       footer{
         position: absolute;
         bottom: 0;
@@ -27,7 +47,6 @@
         color: white;
         text-align: center;
         z-index: 100;
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 0.6em;
       }
       a{
@@ -36,6 +55,24 @@
       }
       a:hover{
         color: white;
+      }
+
+      p{
+        font-size: 0.6em;
+      }
+
+      #info{
+        color: rgb(103, 103, 103);
+        text-decoration: none;
+        font-size: 1em;
+      }
+      #info:hover{
+        color: white;
+      }
+      #caption{
+        color: rgb(103, 103, 103);
+        text-decoration: none;
+        font-size: 0.6em;
       }
 
       #imdb{
@@ -58,7 +95,7 @@
         width: 100%;
         height: 100px;
         background-color: black;
-        z-index: 1;
+        z-index: 2;
       }
       .top-bar {
         top: 0;
@@ -70,16 +107,18 @@
         height: 100%;
         margin: 0;
         padding: 0;
+        font-family: "Noto Sans TC", Arial, Helvetica, sans-serif;
+        cursor: crosshair;
       }
       h1{
-        color: grey;
-        font-family: Arial, Helvetica, sans-serif;
+        color: rgb(29, 29, 29);
+        font-family: "Noto Sans TC", Arial, Helvetica, sans-serif;
         font-size: 1.5em;
       }
     </style>
   </head>
   <body>
-   
+    <div id="sidebar"></div>
     <div id="map-container">
       <div id="search-container" style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 5;">
         <input type="text" id="search-box" placeholder="Search film and drama..." style="width: 300px; height: 20px; font-size: 16px;">
@@ -201,78 +240,144 @@
         });
 
         const locations = [
-          { film_name: "Infernal Affairs 無間道", URL:"https://www.imdb.com/title/tt0338564/", year:"2002", address: "10 Chatham Rd S, Tsim Sha Tsui, Hong Kong", lat: 22.2976, lng: 114.1729, picture: "asset/movie/infernal-affairs.png" },
-          { film_name: "Chungking Express 重慶森林", URL:"https://www.imdb.com/title/tt0109424/", year:"1994", address: "Chungking Mansions, 36-44 Nathan Rd, Tsim Sha Tsui, Hong Kong", lat: 22.2977, lng: 114.1729, picture: "asset/movie/infernal-affairs.png" },
-          { film_name: "The Killer 喋血雙雄", URL:"https://www.imdb.com/title/tt0097202/", year:"1989", address: "Yau Ma Tei Fruit Market, Reclamation St, Yau Ma Tei, Hong Kong", lat: 22.3090, lng: 114.1684, picture: "asset/movie/infernal-affairs.png" },
-          { film_name: "In the Mood for Love 花樣年華", URL:"https://www.imdb.com/title/tt0118694/", year:"2000", address: "Morse Park, 1 Morse Park Rd, Wong Tai Sin, Hong Kong", lat: 22.3461, lng: 114.2026, picture: "asset/movie/infernal-affairs.png" },
-          { film_name: "Police Story 警察故事", URL:"https://www.imdb.com/title/tt0089374/", year:"1985", address: "Tai Po Police Station, 44 Ting Kok Rd, Tai Po, Hong Kong", lat: 22.4509, lng: 114.1595, picture: "asset/movie/infernal-affairs.png" },
-          { film_name: "A Better Tomorrow 英雄本色", URL:"https://www.imdb.com/title/tt0092263/", year:"1986", address: "Tsim Sha Tsui Promenade, Salisbury Rd, Tsim Sha Tsui, Hong Kong", lat: 22.2951, lng: 114.1691, picture: "asset/movie/infernal-affairs.png" },
-          { film_name: "Internal Affairs 無間道", URL:"https://www.imdb.com/title/tt0338564/", year:"2002", address: "Central Police Station, 10 Hollywood Rd, Central, Hong Kong", lat: 22.2830, lng: 114.1476, picture: "asset/movie/infernal-affairs.png" },
-          { film_name: "Kung Fu Hustle 功夫", URL:"https://www.imdb.com/title/tt0119217/", year:"2004", address: "Lam Tei Quarry, Lam Tei, Hong Kong", lat: 22.3707, lng: 114.0165, picture: "asset/movie/infernal-affairs.png" },
-          { film_name: "Shaolin Soccer 少林足球", URL:"https://www.imdb.com/title/tt0286112/", year:"2001", address: "Tseung Kwan O Industrial Estate, Tseung Kwan O, Hong Kong", lat: 22.3139, lng: 114.2647, picture: "asset/movie/infernal-affairs.png" },
-          { film_name: "Fallen Angel 墮落天使", URL:"https://www.imdb.com/title/tt0112913/", year:"1995", address: "Sai Wan Ho MTR Station, Hong Kong", lat: 22.28238129728914, lng: 114.2223959967271, picture: "asset/movie/fallen-angel.jpg" },
-          { film_name: "Full Throttle 烈火戰車", URL:"https://www.imdb.com/title/tt0113651/", year:"1995", address: "Aberdeen Tunnel, Hong Kong Island, Hong Kong", lat: 22.2489, lng: 114.1587, picture: "asset/movie/infernal-affairs.png" },
-          { film_name: "Lan Kwai Fong 喜愛夜蒲 1/2", URL:"https://www.imdb.com/title/tt1988689/", year:"2011", address: "Lan Kwai Fong, Hong Kong Island, Hong Kong", lat: 22.28194334083403, lng: 114.15577800738939, picture: "asset/movie/lankwaifong.png" },
-          { film_name: "Life After Death 那些我愛過的人", URL:"https://www.discoverhongkong.com/tc/explore/great-outdoor/wellness/high-island-geo-trail.html", year:"2019", address: "High Island Reservoir East Dam 萬宜水庫東壩, Sai Kung, Hong Kong", lat: 22.37040099949507, lng: 114.37340747772033, picture: "asset/drama/life-after-death_res2.png" }
+          { film_name: "Infernal Affairs", CN_name: "無間道", URL:"https://www.imdb.com/title/tt0338564/", year:"2002", address: "10 Chatham Rd S, Tsim Sha Tsui, Hong Kong", lat: 22.2976, lng: 114.1729, picture: "asset/movie/infernal-affairs.png" },
+          { film_name: "Chungking Express", CN_name: "重慶森林", URL:"https://www.imdb.com/title/tt0109424/", year:"1994", address: "Chungking Mansions, 36-44 Nathan Rd, Tsim Sha Tsui, Hong Kong", lat: 22.2977, lng: 114.1729, picture: "asset/movie/chungking.jpg" },
+          { film_name: "The Killer", CN_name: "喋血雙雄", URL:"https://www.imdb.com/title/tt0097202/", year:"1989", address: "Yau Ma Tei Fruit Market, Reclamation St, Yau Ma Tei, Hong Kong", lat: 22.3090, lng: 114.1684, picture: "asset/movie/infernal-affairs.png" },
+          { film_name: "In the Mood for Love", CN_name: "花樣年華", URL:"https://www.imdb.com/title/tt0118694/", year:"2000", address: "Morse Park, 1 Morse Park Rd, Wong Tai Sin, Hong Kong", lat: 22.3461, lng: 114.2026, picture: "asset/movie/infernal-affairs.png" },
+          { film_name: "Police Story", CN_name: "警察故事", URL:"https://www.imdb.com/title/tt0089374/", year:"1985", address: "Tai Po Police Station, 44 Ting Kok Rd, Tai Po, Hong Kong", lat: 22.4509, lng: 114.1595, picture: "asset/movie/infernal-affairs.png" },
+          { film_name: "A Better Tomorrow", CN_name: "英雄本色", URL:"https://www.imdb.com/title/tt0092263/", year:"1986", address: "Jackson Road, Central, Hong Kong", lat: 22.28127, lng: 114.1608, picture: "asset/movie/bettertomorrow.jpg" },
+          { film_name: "Internal Affairs", CN_name: "無間道", URL:"https://www.imdb.com/title/tt0338564/", year:"2002", address: "Central Police Station, 10 Hollywood Rd, Central, Hong Kong", lat: 22.2830, lng: 114.1476, picture: "asset/movie/infernal-affairs.png" },
+          { film_name: "Kung Fu Hustle", CN_name: "功夫", URL:"https://www.imdb.com/title/tt0119217/", year:"2004", address: "Lam Tei Quarry, Lam Tei, Hong Kong", lat: 22.3707, lng: 114.0165, picture: "asset/movie/infernal-affairs.png" },
+          { film_name: "Shaolin Soccer", CN_name: "少林足球", URL:"https://www.imdb.com/title/tt0286112/", year:"2001", address: "Tseung Kwan O Industrial Estate, Tseung Kwan O, Hong Kong", lat: 22.3139, lng: 114.2647, picture: "asset/movie/infernal-affairs.png" },
+          { film_name: "Fallen Angel", CN_name: "墮落天使", URL:"https://www.imdb.com/title/tt0112913/", year:"1995", address: "Sai Wan Ho MTR Station, Hong Kong", lat: 22.28238129728914, lng: 114.2223959967271, picture: "asset/movie/fallen-angel.jpg" },
+          { film_name: "Full Throttle", CN_name: "烈火戰車", URL:"https://www.imdb.com/title/tt0113651/", year:"1995", address: "Aberdeen Tunnel, Hong Kong Island, Hong Kong", lat: 22.2489, lng: 114.1587, picture: "asset/movie/infernal-affairs.png" },
+          { film_name: "Lan Kwai Fong", CN_name: "喜愛夜蒲 1/2", URL:"https://www.imdb.com/title/tt1988689/", year:"2011", address: "Lan Kwai Fong, Hong Kong Island, Hong Kong", lat: 22.28194334083403, lng: 114.15577800738939, picture: "asset/movie/lankwaifong.png" },
+          { film_name: "Life After Death", CN_name: "那些我愛過的人", URL:"https://www.discoverhongkong.com/tc/explore/great-outdoor/wellness/high-island-geo-trail.html", year:"2019", address: "High Island Reservoir East Dam 萬宜水庫東壩, Sai Kung, Hong Kong", lat: 22.37040099949507, lng: 114.37340747772033, picture: "asset/drama/life-after-death_res2.png" },
+          { film_name: "Chasing the Dragon", CN_name: "追龍", URL: "https://www.imdb.com/title/tt6015328/",year: "2017",address: "Shek Kip Mei Estate, Sham Shui Po, Hong Kong",lat: 22.3312,lng: 114.1615, picture: "asset/movie/chasing-the-dragon.png" },
+          { film_name: "Life After Death", CN_name: "那些我愛過的人", URL:"https://www.discoverhongkong.com/tc/explore/great-outdoor/wellness/high-island-geo-trail.html", year:"2019", address: "High Island Reservoir East Dam 萬宜水庫東壩, Sai Kung, Hong Kong", lat: 22.37040099949507, lng: 114.37340747772033, picture: "asset/drama/life-after-death_res2.png", direction:"https://maps.app.goo.gl/PzaMpP219UggWi9v9" }
         ];
+        
+        
+        let currentIndex = 0;
+        let infoWindow = new google.maps.InfoWindow(); // Create a single InfoWindow instance
 
-        locations.forEach(location => {
-            const originalSize = new google.maps.Size(40, 23); // Original icon size
-            const enlargedSize = new google.maps.Size(80, 45); // Enlarged icon size
-           
-            const marker = new google.maps.Marker({
-            position: { lat: location.lat, lng: location.lng },
-            map: map,
-            title: location.film_name,
-            opacity: 0.7,
-            icon: {
-                url: location.picture, // URL of the image
-                scaledSize: originalSize,
-                origin: new google.maps.Point(0, 0), // Origin point of the icon
-                anchor: new google.maps.Point(20, 20) // Anchor point of the icon
-                }
-          });
 
-            marker.addListener('mouseover', function () {
-                marker.setIcon({
-                    url: location.picture,
-                    scaledSize: enlargedSize,
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(30, 30) // Adjust anchor point to keep the icon centered
-                });
-                marker.setOpacity(1.0);
-            });
+        function showLocation(index) {
+      const location = locations[index];
+      const sidebar = document.getElementById('sidebar');
+      sidebar.innerHTML = `<div style='padding: 20px;'>
+        <a id="info" href="${location.URL}" target="_blank"><h1>${location.film_name} 
+          <br>${location.CN_name} (${location.year})</h1></a>
+        <p>${location.address}</p>
+        <p>Latitude: ${location.lat}<br>Longitude: ${location.lng}</p>
+        <br>
+        <img src='${location.picture}' alt='${location.film_name}' style='width:100%;'>
+        <p id="caption">image: source</p>
+        <button onclick="navigate(-1)"><</button>
+        <button onclick="navigate(1)">></button>
+        </div>`;
+      sidebar.style.display = 'block';
+      sidebar.style.opacity = 1;
 
-            // Add mouseout event listener to reset the icon size and opacity
-            marker.addListener('mouseout', function () {
-                marker.setIcon({
-                    url: location.picture,
-                    scaledSize: originalSize,
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(20, 20)
-                });
-                marker.setOpacity(0.5);
-            });
+       // Zoom in and center the map on the new location
+       map.setZoom(13); // Zoom level can be adjusted as needed
+      map.setCenter(new google.maps.LatLng(location.lat, location.lng));
 
-          const infowindow = new google.maps.InfoWindow({
-                content: `<div style='color: black; text-align: center;'>
-                        <h1>${location.film_name} (${location.year})</h1>
-                        <a id ="imdb" href="${location.URL}" target="_blank">More Info on IMDb</a>
-                        <p>${location.address}</p>
-                        <p>Latitude: ${location.lat}, Longitude: ${location.lng}</p>
-                        <p><a href="https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}" target="_blank">Get Directions</a></p>
-                        <img src='${location.picture}' alt='${location.film_name}' style='width:250px;'>
-                      </div>`
-            });
+      //zoom out
+      setTimeout(() => {
+        map.setZoom(11); // Zoom out to the original zoom level
+      }, 12000); //   TIME 10000 10seconds
 
-            marker.addListener("click", () => {
-                infowindow.open(map, marker);
-            });
-        });
+      // infoWindow at the marker position
+      infoWindow.setContent(`<div><strong>${location.address}</strong><br>${location.film_name} ${location.CN_name}</div>`);
+      infoWindow.setPosition(new google.maps.LatLng(location.lat+0.001, location.lng));
+      infoWindow.open(map);
+    }
+
+    function navigate(direction) {
+      currentIndex += direction;
+      if (currentIndex < 0) {
+        currentIndex = locations.length - 1; // Wrap around to the last item
+      } else if (currentIndex >= locations.length) {
+        currentIndex = 0; // Wrap around to the first item
       }
+      showLocation(currentIndex);
+    }
 
+    locations.forEach((location, index) => {
+      const originalSize = new google.maps.Size(40, 23); // Original icon size
+      const enlargedSize = new google.maps.Size(80, 45); // Enlarged icon size
+
+      const marker = new google.maps.Marker({
+        position: { lat: location.lat, lng: location.lng },
+        map: map,
+        title: location.film_name,
+        opacity: 0.7,
+        icon: {
+          url: location.picture,
+          scaledSize: originalSize,
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(20, 20)
+        },
+        label: {
+          text: location.film_name,
+          color: 'white',
+          fontSize: '12px',
+          fontWeight: 'bold'
+        }
+      });
+
+      marker.addListener('mouseover', function () {
+        animateMarker(marker, enlargedSize, 150); // Animate to larger size
+      });
+
+      marker.addListener('mouseout', function () {
+        animateMarker(marker, originalSize, 150); // Animate back to original size
+      });
+
+      marker.addListener("click", () => {
+        currentIndex = index;
+        showLocation(currentIndex);
+      });
+    });
+
+    window.navigate = navigate;
+    window.onload = () => showLocation(0);
+      }
+      function animateMarker(marker, size, duration) {
+    const start = new Date().getTime();
+    const end = start + duration;
+    const startSize = marker.getIcon().scaledSize;
+    const deltaWidth = size.width - startSize.width;
+    const deltaHeight = size.height - startSize.height;
+
+    const timer = setInterval(function () {
+      const time = new Date().getTime();
+      const p = (time - start) / (end - start);
+
+      if (time < end) {
+        marker.setIcon({
+          url: marker.getIcon().url,
+          scaledSize: new google.maps.Size(startSize.width + deltaWidth * p, startSize.height + deltaHeight * p),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(20, 20)
+        });
+      } else {
+        marker.setIcon({
+          url: marker.getIcon().url,
+          scaledSize: size,
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(20, 20)
+        });
+        clearInterval(timer);
+      }
+    }, 10);
+  }
       window.onload = initMap;
+
+       
     </script>
-    <footer>&copy; Copyright 2024 <a href="https://janetckm.github.io/">Ka Man Janet CHOI</a>MAP for in-depth</footer>
+    <footer><a href="https://www.discoverhongkong.com/us/index.html" target="_blank" rel="noopener noreferrer">Discover Hong Kong</a><br>
+      &copy; Copyright 2024 <a href="https://janetckm.github.io/">Ka Man Janet CHOI</a></footer>
   </body>
 </html>
