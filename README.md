@@ -1,4 +1,4 @@
-# LOCA
+# LOCA!
 map of movies and dramas
 
 | Task                                           | Start Date   | End Date     |
