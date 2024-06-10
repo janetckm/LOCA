@@ -1,5 +1,5 @@
 # LOCA!
-map of movies and dramas
+TV/FILM LOCATIONS
 
 LOCA! is a data visualization of film and TV series, particularly a map of filming locations in Hong Kong SAR. Recently, Hong Kong's tourism and related industries have been struggling economically; the government has been trying to promote local culture and enhance the attractiveness through mega-events and investments. LOCA!" aims to be a complementary strategy to sustainably attract tourists and local citizens to visit Hong Kong in the form of photography and cultural explorations.
 
