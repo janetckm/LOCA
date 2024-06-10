@@ -11,7 +11,7 @@ LOCA! is a data visualization of film and TV series, particularly a map of filmi
 https://janetckm.github.io/LOCA/
 
 # Video
-https://youtu.be/BKq5uwn9RvA
+[https://youtu.be/BKq5uwn9RvA](https://youtu.be/3Ph0Sa1L3Xk)
 
 # Files
 https://github.com/janetckm/LOCA
