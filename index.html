@@ -2165,22 +2165,22 @@
 
 
         sidebar.innerHTML = `<div style='padding: 20px;'>
-    <a id="info" href="${location.URL}" target="_blank"><h1>${location.film_name} 
-      <br>${location.CN_name} (${location.year})</h1></a>
-      <p>Rating: ${location.rating}</p> 
-      <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAABa0lEQVR4nM2VvUoDURCFPxu1EEEQGx9AsBJsxcZWyxjSiFrEIjGgLxAiGCSaXp/DR7DwL2jwCQStYgr/SONP5MJZGJbNLnvXIgcO7M6cOXP3zt1dGAKMARXgCvgU3fWucpkwC7SB/gDeS+O98raMXoA6kBMPgWfTxOtJKsa8AKyGWFDOaco+Da5VXJdhDejKtKrYkTSXPg0+VJyTWbDa4KlcbF337z4NuirOxzTI695pU+NCxTWZVWVst+hAGqdNjX0V30QMOGBLmj2fBjNAD/gFShHmZeV60nqhqRU+AGuhBsE7ckIGTJthN4z5sRmu02TCtjmKm8AG8KrYFv+AEeBchnf6NPQVc7nUKJrz3lBsCng08SezNQ0Td7WJCI6e4w+wovgS8CW6a4dl4Nvob5PMF8zwxiPyJTGMUaCj2sW4BmcZjl5TtaeDBBPAm0TzHg3m9OK5j+RklGAn5s/VT8li0nCzsuWxA0OKP/0jpljDVHLwAAAAAElFTkSuQmCC">
-    </a>
-    <p>${location.address}</p>
-    <p>Latitude: ${location.lat}<br>Longitude: ${location.lng}</p>
-    <a id="info-videolink" href="https://youtu.be/${location.youtubeKey}?t=${location.youtubeTime}" target="_blank">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgElEQVR4nO3UMQoCQQxG4e94rmxh7wkEL2HnMbyFlxC8w443sF2IzdhNI7spBveHVwXyICFhyw/ZoyAWUjC0BGs0j8rUEnyL40Ki8meCJ86ZgsCMO45Zgqi8ccMhSxCVF67ZgktXI5ozl/zAqetDG7sQlOx3PdTCGs13LcEWrXwAkwfaBjhRQwwAAAAASUVORK5CYII=">
-    </a>
-<iframe width="100%" src="https://www.youtube.com/embed/${location.youtubeKey}?start=${location.youtubeTime}&controls=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
-    <br>
-    <button onclick="navigate(-1)"><</button>
-    <button onclick="navigate(1)">></button>
-    </div>`;
+          <a id="info" href="${location.URL}" target="_blank"><h1>${location.film_name} 
+          <br>${location.CN_name} (${location.year})</h1></a>
+          <p>Rating: ${location.rating}</p> 
+          <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAABa0lEQVR4nM2VvUoDURCFPxu1EEEQGx9AsBJsxcZWyxjSiFrEIjGgLxAiGCSaXp/DR7DwL2jwCQStYgr/SONP5MJZGJbNLnvXIgcO7M6cOXP3zt1dGAKMARXgCvgU3fWucpkwC7SB/gDeS+O98raMXoA6kBMPgWfTxOtJKsa8AKyGWFDOaco+Da5VXJdhDejKtKrYkTSXPg0+VJyTWbDa4KlcbF337z4NuirOxzTI695pU+NCxTWZVWVst+hAGqdNjX0V30QMOGBLmj2fBjNAD/gFShHmZeV60nqhqRU+AGuhBsE7ckIGTJthN4z5sRmu02TCtjmKm8AG8KrYFv+AEeBchnf6NPQVc7nUKJrz3lBsCng08SezNQ0Td7WJCI6e4w+wovgS8CW6a4dl4Nvob5PMF8zwxiPyJTGMUaCj2sW4BmcZjl5TtaeDBBPAm0TzHg3m9OK5j+RklGAn5s/VT8li0nCzsuWxA0OKP/0jpljDVHLwAAAAAElFTkSuQmCC">
+          </a>
+          <p>${location.address}</p>
+          <p>Latitude: ${location.lat}<br>Longitude: ${location.lng}</p>
+          <a id="info-videolink" href="https://youtu.be/${location.youtubeKey}?t=${location.youtubeTime}" target="_blank">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgElEQVR4nO3UMQoCQQxG4e94rmxh7wkEL2HnMbyFlxC8w443sF2IzdhNI7spBveHVwXyICFhyw/ZoyAWUjC0BGs0j8rUEnyL40Ki8meCJ86ZgsCMO45Zgqi8ccMhSxCVF67ZgktXI5ozl/zAqetDG7sQlOx3PdTCGs13LcEWrXwAkwfaBjhRQwwAAAAASUVORK5CYII=">
+          </a>
+          <iframe width="100%" src="https://www.youtube.com/embed/${location.youtubeKey}?start=${location.youtubeTime}&controls=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+          <br>
+          <button onclick="navigate(-1)"><</button>
+          <button onclick="navigate(1)">></button>
+          </div>`;
         sidebar.style.display = 'block';
         sidebar.style.opacity = 1;
 
