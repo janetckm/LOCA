@@ -7,11 +7,20 @@ LOCA! is a data visualization of film and TV series, particularly a map of filmi
 
 「LOCA！」是一個電影和電視劇的數據可視化互動平台，特別專注香港的拍攝地點深度遊地圖的建構。近來，香港旅遊業及相關產業的經濟和發展面臨挑戰，政府努力透過大型活動和投資來推廣香港, 「LOCA！」希望作為數據＋文旅的補充策略，以實地攝影和文化探索的可持續方式，吸引遊客和本地市民遊覽香港，刺激相關地點的人流與經濟。
 
-# Work-in-progress
+# Work-in-progress Interactive Map
 https://janetckm.github.io/LOCA/
 
 # Video
-[https://youtu.be/BKq5uwn9RvA](https://youtu.be/3Ph0Sa1L3Xk)
+https://youtu.be/3Ph0Sa1L3Xk
 
 # Files
-https://github.com/janetckm/LOCA
+**csvtojson.py **
+python script to convert csv to json
+**fetch.py**
+python script to fetch data like IMDb rating via OMDB API
+**LocationList_20240610_UTF.csv**
+UTF-8 encoding CSV with Chinese Titles (in optimizations)
+**index.html / style.css**
+LOCA! Website
+**asset/...**
+captures of locations (unused due to potential copyright concerns)
