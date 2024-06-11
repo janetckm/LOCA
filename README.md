@@ -11,7 +11,16 @@ LOCA! is a data visualization of film and TV series, particularly a map of filmi
 https://janetckm.github.io/LOCA/
 
 # Video
-https://youtu.be/BKq5uwn9RvA
+https://youtu.be/3Ph0Sa1L3Xk
 
 # Files
-https://github.com/janetckm/LOCA
+**LocationList_20240610_UTF.csv**<br>
+Dataset - UTF-8 encoding CSV with Chinese Titles (in optimizations)<br>
+**csvtojson.py**<br>
+python script to convert csv to json<br>
+**fetch.py**<br>
+python script to fetch data like IMDb rating via OMDB API<br>
+**index.html / style.css**<br>
+LOCA! Website<br>
+**asset/...** <br>
+captures of locations (unused due to potential copyright concerns)
