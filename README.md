@@ -18,6 +18,8 @@ https://youtu.be/3Ph0Sa1L3Xk <br>
 ![image info](./asset/loca_thumbnail2.gif)
 
 # Files
+**LOCA_description_v03.pdf**<br>
+LOCA! Project Description
 **LocationList_20240610_UTF.csv**<br>
 Dataset - UTF-8 encoding CSV with Chinese Titles (in optimizations)<br>
 **csvtojson.py**<br>
