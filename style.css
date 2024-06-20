@@ -82,8 +82,13 @@ button:hover {
  }
 
  #info:hover {
-   color: white;
+   color: rgb(254, 43, 145);
  }
+
+ 
+/* #sidebar:hover a {
+  color: rgb(254, 43, 145);
+ } */
 
  #caption {
    color: rgb(103, 103, 103);
