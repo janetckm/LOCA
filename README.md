@@ -31,6 +31,6 @@ LOCA! Website<br>
 **asset/...** <br>
 captures of locations (unused due to potential copyright concerns)
 
-# Video
-https://www.chinavis.org/2024/english/challenge_en.html
+# Award
+https://www.chinavis.org/2024/english/challenge_en.html <br>
 Bronze Award, 11th China Visualization and Visual Analytics Conference (ChinaVis 2024) - Art Visualization Competition Track; Acceptance Rate: 14.4%
